@@ -405,7 +405,7 @@
       </table>
     </div>
 
-    <script>
+    <script type="module">
       const hombresJovenes = [];
       const mujeresJovenes = [];
 
@@ -421,7 +421,7 @@
       function initClient() {
         gapi.client
           .init({
-            apiKey: "AIzaSyAH6vOmLOZj-u44Hgw6NZxe7e1zCAVxwb8",
+            apiKey: import.meta.env.VITE_GOOGLE_SHEETS_API_KEY,
             discoveryDocs: [
               "https://sheets.googleapis.com/$discovery/rest?version=v4",
             ],
