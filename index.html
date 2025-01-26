@@ -408,6 +408,7 @@
     <script type="module">
       const hombresJovenes = [];
       const mujeresJovenes = [];
+      let currentGroup = "hombres";
 
       function loadGoogleSheetsAPI() {
         const script = document.createElement("script");
@@ -516,7 +517,20 @@
 
       window.onload = loadGoogleSheetsAPI;
 
-      let currentGroup = "hombres";
+      // Make toggleGroup globally accessible
+      window.toggleGroup = function () {
+        const button = document.getElementById("toggleButton");
+
+        if (currentGroup === "hombres") {
+          displayActivities(mujeresJovenes);
+          currentGroup = "mujeres";
+          button.textContent = "Cambiar a Hombres Jóvenes";
+        } else {
+          displayActivities(hombresJovenes);
+          currentGroup = "hombres";
+          button.textContent = "Cambiar a Mujeres Jóvenes";
+        }
+      };
 
       function displayActivities(activities) {
         const tbody = document.querySelector("#activitiesTable tbody");
@@ -563,20 +577,6 @@
           });
           tbody.appendChild(row);
         });
-      }
-
-      function toggleGroup() {
-        const button = document.getElementById("toggleButton");
-
-        if (currentGroup === "hombres") {
-          displayActivities(mujeresJovenes);
-          currentGroup = "mujeres";
-          button.textContent = "Cambiar a Hombres Jóvenes";
-        } else {
-          displayActivities(hombresJovenes);
-          currentGroup = "hombres";
-          button.textContent = "Cambiar a Mujeres Jóvenes";
-        }
       }
     </script>
   </body>
